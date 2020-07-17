@@ -1,1 +1,1 @@
-web: gunicorn jormungand:app
+web: gunicorn flaskr:app
