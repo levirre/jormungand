@@ -1,0 +1,12 @@
+body{
+    background-color:#403C3B;
+}
+
+.title{
+    color:#FFF;
+    font-size:6em;
+    display: grid;
+    height: 100vh;
+    margin: 0;
+    place-items: center center;
+}
