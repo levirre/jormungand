@@ -2,11 +2,23 @@ body{
     background-color:#252631;
 }
 
-.title{
+.main{
     color:#FFF;
-    font-size:6em;
-    display: grid;
     height: 90vh;
     margin: 0;
+    
+}
+.title{
+    font-size:6em;
+    display: grid;
     place-items: center center;
+}
+
+.login{
+    display:grid;
+    place-items: center center;
+}
+
+.submit{
+    display:none;
 }
