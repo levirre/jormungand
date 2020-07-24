@@ -1,0 +1,16 @@
+<!doctype html>
+<head> <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/> 
+</head>
+<body class="main">
+    <div class="title">Project Imouto</div>
+    <div class="title">Register</div>
+    <div class="login">
+        <form method="post">
+            <label for="user">Username:</label><br>
+            <input type="text" id="user" name="user"><br>
+            <label for="hash">Password:</label><br>
+            <input type="text" id="hash" name="hash">
+            <input class="submit" type="submit" value="Submit">
+        </form>
+    </div>
+</body>

@@ -3,27 +3,73 @@ from sqlalchemy import MetaData, Table, create_engine
 from dotenv import load_dotenv, find_dotenv
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.automap import automap_base
+from werkzeug.security import check_password_hash
+from flask import flash
 
-def db(n,password):
+
+def db():
     load_dotenv(find_dotenv())
     DATABASE_URL = os.getenv("DATABASE_URL")
     engine = create_engine(DATABASE_URL)
     #print(engine.table_names())
-    name=n
-    password=password
     Base = automap_base()
     Base.prepare(engine, reflect=True)
     user=Base.classes.users
+    Session = sessionmaker(bind=engine)
    # print(user)
+    
+      
+    
+def new_user(name,password):
+    load_dotenv(find_dotenv())
+    DATABASE_URL = os.getenv("DATABASE_URL")
+    engine = create_engine(DATABASE_URL)
+    #print(engine.table_names())
+    Base = automap_base()
+    Base.prepare(engine, reflect=True)
+    user=Base.classes.users
     Session = sessionmaker(bind=engine)
     session = Session()
-    session.add(user(username=name,hash=password))
-    #session.add(users(username=user,hash=password))
-    session.commit()
-    session.close()
-    engine.dispose()
-    
+    uname = session.query(user).filter_by(username=name).first()
 
+    
+    if uname == None:
+        session.add(user(username=name,hash=password))
+        session.commit()
+        flash('Registered')
+    #session.add(users(username=user,hash=password))
+    else:
+        session.close()
+        engine.dispose()
+        print('Try again')
+        
+
+def existing_user(name,password):
+    load_dotenv(find_dotenv())
+    DATABASE_URL = os.getenv("DATABASE_URL")
+    engine = create_engine(DATABASE_URL)
+    #print(engine.table_names())
+    Base = automap_base()
+    Base.prepare(engine, reflect=True)
+    user=Base.classes.users
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    uname = session.query(user).filter_by(username=name).first()
+    
+    if uname:
+        if check_password_hash(uname.hash,password):
+            print('wew')
+            session.close()
+            engine.dispose()
+        else:
+            print('no')
+    return 
+
+            
+
+
+        
+    #if uname != None:
 
 
 

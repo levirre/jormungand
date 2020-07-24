@@ -1,23 +1,23 @@
-from flask import Flask, render_template
-from database.db import db
-from flask import request
+from flask import Flask
+from modules.auth.auth import reg
+#The gunicorn command expects the names of your application module or package 
+#and the application instance within the module. If you use the application factory pattern, 
+#you can pass a call to that:
+
+#$ gunicorn "myproject:create_app()"
+
 def create_app():
     app = Flask(__name__,instance_relative_config=True)
-
+    app.config['SECRET_KEY'] = 'my super secret key'
+    app.register_blueprint(reg)
+    
+    
 
 #@app.route('/')
 #def index():
 #    return render_template('home.html')
 
-    @app.route('/',methods=(['GET','POST']))
-    def register():
-        if request.method =='POST':
-            username = request.form['user']
-            password = request.form['hash']
-            db(username,password)
-            return render_template('home.html')
-        else:
-            return render_template('login.html')
+
 
 
     return app
