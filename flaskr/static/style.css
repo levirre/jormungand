@@ -9,6 +9,7 @@ body{
     
 }
 .title{
+    color:#FFF;
     font-size:6em;
     display: grid;
     place-items: center center;

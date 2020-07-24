@@ -15,7 +15,7 @@ def register():
         username = request.form['user']
         password = request.form['hash']
         db(username,password)
-        return render_template('login.html')
+        return render_template('home.html')
     else:
         return render_template('login.html')
 
