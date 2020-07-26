@@ -37,11 +37,14 @@ def new_user(name,password):
     if uname == None:
         session.add(user(username=name,hash=password))
         session.commit()
-        flash('Registered')
+        session.close()
+        engine.dispose()
+        return True
     #session.add(users(username=user,hash=password))
     else:
         session.close()
         engine.dispose()
+
         
         
 
