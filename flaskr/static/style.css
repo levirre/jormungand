@@ -23,3 +23,10 @@ body{
 .submit{
     display:none;
 }
+.incorrect{
+    color:rgb(196, 0, 0);
+    font-size:1em;
+    display: grid;
+    place-items: center center;
+
+}

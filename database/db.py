@@ -41,7 +41,7 @@ def new_user(name,password):
     else:
         session.close()
         engine.dispose()
-        print('Try again')
+        
         
 
 def existing_user(name,password):

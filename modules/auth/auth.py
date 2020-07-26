@@ -11,22 +11,25 @@ from werkzeug.security import check_password_hash, generate_password_hash
 reg= Blueprint('reg',__name__,url_prefix='/user')
 
 home=Blueprint('home',__name__)
-
 @home.route('/',methods=['GET'])
 def index():
+    retry=''
     return redirect(url_for('reg.register'))
 
 @reg.route('/register',methods=(['GET','POST']))
 def register():
+    
     if request.method =='POST':
         db()
         username = request.form['user']
         password = request.form['hash']
         password = generate_password_hash(password)
-        new_user(username,password)
-        return redirect(url_for('.login'))
+        if new_user(username,password):
+            return redirect(url_for('.login'))
+        else:
+            retry='name taken'
+            return render_template('register.html',retry=retry)
     else:
-        flash('test')
         return render_template('register.html')
 
 @reg.route('/login',methods=(['GET','POST']))
