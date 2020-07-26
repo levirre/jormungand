@@ -10,6 +10,10 @@ def create_app():
     app = Flask(__name__,instance_relative_config=True)
     app.config['SECRET_KEY'] = 'my super secret key'
     app.register_blueprint(reg)
+
+@app.route('/')
+def index():
+    return render_template('register.html')
     
     
 
