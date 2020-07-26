@@ -18,7 +18,7 @@ def register():
         password = request.form['hash']
         password = generate_password_hash(password)
         new_user(username,password)
-        return render_template('home.html')
+        return redirect(url_for('.login'))
     else:
         flash('test')
         return render_template('register.html')
