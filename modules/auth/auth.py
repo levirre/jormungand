@@ -10,6 +10,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 reg= Blueprint('reg',__name__,url_prefix='/user')
 
+@reg.route('/',methods=(['GET','POST']))
+def index():
+    return redirect(url_for('.register'))
+
+
 @reg.route('/register',methods=(['GET','POST']))
 def register():
     if request.method =='POST':
