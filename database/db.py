@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.automap import automap_base
 from werkzeug.security import check_password_hash
 from flask import flash
+from flask import session as sess
 
 
 def db():
@@ -57,19 +58,17 @@ def existing_user(name,password):
     uname = session.query(user).filter_by(username=name).first()
     
     if uname:
-        p = check_password_hash(uname.hash,password)
+        if check_password_hash(uname.hash,password):
+            sess['user'] = uname.username
+            
+            return True
         #if check_password_hash(uname.hash,password):
             
         session.close()
         engine.dispose()
         #else:
             #print('no')
-    return p
-
-            
-
-
-        
+    return     
     #if uname != None:
 
 

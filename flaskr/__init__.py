@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, session
 from modules.auth.auth import reg, home
 
 #The gunicorn command expects the names of your application module or package 

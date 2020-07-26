@@ -1,20 +1,30 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for,
 )
 import sys
 from werkzeug.exceptions import abort
 from database.db import db,new_user, existing_user
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask import session as sess
 #load database & start session
 
 
 reg= Blueprint('reg',__name__,url_prefix='/user')
-
+#g.user = None
 home=Blueprint('home',__name__)
 @home.route('/',methods=['GET'])
 def index():
     retry=''
     return redirect(url_for('reg.register'))
+
+@home.route('/main',methods=['GET'])
+def main():
+     
+    if 'user' in sess:
+        g.user = sess['user']
+        return render_template('home.html')
+    else:
+        return render_template('home.html')
 
 @reg.route('/register',methods=(['GET','POST']))
 def register():
@@ -38,7 +48,7 @@ def login():
         username = request.form['user']
         password = request.form['hash']
         if existing_user(username,password):
-            return redirect(url_for('.winner'))
+            return redirect(url_for('home.main'))
         else:
             return redirect(url_for('.loser'))
     return render_template('login.html')
