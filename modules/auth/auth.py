@@ -29,10 +29,16 @@ def login():
         username = request.form['user']
         password = request.form['hash']
         if existing_user(username,password):
-            print('This is error output', file=sys.stderr)
-            print('This is standard output', file=sys.stdout)
+            return redirect(url_for('.winner'))
         else:
-            print('test', file=sys.stderr)
-            print('This is standard output', file=sys.stdout)
+            return redirect(url_for('.loser'))
     return render_template('login.html')
+
+@reg.route('/winner',methods=(['GET']))
+def winner():
+    return "winner"
+
+@reg.route('/loser',methods=(['GET']))
+def loser():
+    return "loser"
 

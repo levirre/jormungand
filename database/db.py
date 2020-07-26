@@ -57,13 +57,14 @@ def existing_user(name,password):
     uname = session.query(user).filter_by(username=name).first()
     
     if uname:
-        if check_password_hash(uname.hash,password):
-            print('wew')
-            session.close()
-            engine.dispose()
-        else:
-            print('no')
-    return 
+        p = check_password_hash(uname.hash,password)
+        #if check_password_hash(uname.hash,password):
+            
+        session.close()
+        engine.dispose()
+        #else:
+            #print('no')
+    return p
 
             
 
