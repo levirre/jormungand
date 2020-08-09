@@ -1,5 +1,7 @@
 from flask import Flask, redirect, url_for, session
-from modules.auth.auth import reg, home
+import os
+from routes.auth.auth import reg, home
+
 
 #The gunicorn command expects the names of your application module or package 
 #and the application instance within the module. If you use the application factory pattern, 
@@ -13,14 +15,14 @@ def create_app():
     app.register_blueprint(reg)
     app.register_blueprint(home)
     
-    
-
 #@app.route('/')
 #def index():
 #    return render_template('home.html')
 
-
-
-
     return app
+
+
+#@app.teardown_appcontext
+#def shutdown_session(exception=None):
+#    db_session.remove()
 
