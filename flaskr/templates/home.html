@@ -2,6 +2,17 @@
 <head> <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/> 
 </head>
 <body>
-    <div class="title">{{g.user}} Profile</div>
+    <div class="title">{{g.user}} Profile </div>
+    <div><a href="/user/logout">Logout</a></div>
+    <div><a href="/user/register">Register</a></div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </body>
 

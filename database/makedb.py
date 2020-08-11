@@ -11,7 +11,7 @@ db_session = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 def init_db():
     metadata.create_all(bind=engine)
-def get_db():
-    return db_session
+
 def close_session():
-    db_session.close()
+    db_session.remove()
+

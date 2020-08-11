@@ -1,12 +1,12 @@
 from sqlalchemy import Table, Column, Integer, String
 from sqlalchemy.orm import mapper
-from database.makedb import metadata, db_session, get_db, close_session
+from database.makedb import metadata, db_session, close_session
 from sqlalchemy import inspect
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
 class User(object):
-    query = get_db().query_property()
+    query = db_session.query_property()
 
     def __init__(self, username=None, hash=None):
         self.username = username
