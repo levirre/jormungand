@@ -2,7 +2,7 @@ from database.models import User
 from flask import session
 from sqlalchemy import inspect
 from werkzeug.security import check_password_hash, generate_password_hash
-from database.makedb import metadata, db_session, close_session
+from database.makedb import metadata, db_session, close_session, commit_session
 
 def existing_user(name,password):
         uname = User.query.filter_by(username=name).first()
@@ -26,7 +26,7 @@ def new_user(name,password):
     uname = User.query.filter_by(username=name).first()
     if uname == None:
         db_session.add(User(username=name,hash=password))
-        db_session.commit()
+        commit_session()
         #db_session.remove()
         #engine.dispose()
         return True
@@ -35,5 +35,5 @@ def new_user(name,password):
         #db_session.remove()
             #engine.dispose()
 
-print(existing_user('a2','a2'))
+#print(existing_user('a2','a2'))
 #db = get_db()

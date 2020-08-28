@@ -15,3 +15,6 @@ def init_db():
 def close_session():
     db_session.remove()
 
+def commit_session():
+    db_session.commit()
+

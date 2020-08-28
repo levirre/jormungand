@@ -19,7 +19,7 @@ home=Blueprint('home',__name__)
 
 @home.route('/',methods=['GET'])
 def index():
-    retry=''
+    
     return redirect(url_for('reg.login'))
 
 @home.route('/profile/<user>',methods=['GET'])

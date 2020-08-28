@@ -70,7 +70,7 @@ def e_user(name,password):
     uname = test.query(user).filter_by(username=name).first()
     print(uname.username, uname.hash)
     
-e_user('a2','a2')
+existing_user('a2','a2')
 
 
 #session.query(hentai).filter(hentai.name =='Junyoku Kaihouku').delete()

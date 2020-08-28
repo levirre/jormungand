@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, session
 import os
 from routes.auth.auth import reg, home
+from routes.cardfight.cardfight import cardfight
 from database.makedb import db_session
 import logging
 from sqlalchemy import inspect
@@ -16,6 +17,8 @@ def create_app():
     app.config['SECRET_KEY'] = '\xb8\xdd\xf7~X\xce\x8f\x8aM\x12\x98\xb7$(\x1e\xa1>\x00\xe6+\xd9~\x84\x03'
     app.register_blueprint(reg)
     app.register_blueprint(home)
+    app.register_blueprint(cardfight)
+
     
 #@app.route('/')
 #def index():
