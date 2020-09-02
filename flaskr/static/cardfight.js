@@ -149,6 +149,7 @@ var showHand = function(player,hand){
 }
 
 
+
 //function will ask for (how many cards to draw){ call drawcard() that many times and display}
 var carddraw = function(player,numToDraw){
   for(let i=0;i<numToDraw;i++){
@@ -163,8 +164,8 @@ var carddraw = function(player,numToDraw){
 
 
 $(function(){
-$('.deck').click(function(){carddraw(p1,1)});
-$(document).on("click",".card",function(){console.log("clicked")});
+  $('.deck').click(function(){carddraw(p1,1)});
+  $(document).on("click",".card",function(){console.log("clicked")});
 });
 
 //test
