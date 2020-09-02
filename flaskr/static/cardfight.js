@@ -127,7 +127,8 @@ var displayCard = function(single){
   card = document.createElement('div')
   $(card).addClass('card')
         .html('<p>' +single.value + single.suit +'</p>')
-        .css({color: single.color});
+        .css({color: single.color})
+        .draggable();
   
   return card
   
@@ -162,6 +163,7 @@ var carddraw = function(player,numToDraw){
 $(function(){
   $('.deck').click(function(){carddraw(p1,1)});
   $(document).on("click",".card",function(){console.log("clicked")});
+  $('.card').on("draggable",".card")
 });
 
 //test
