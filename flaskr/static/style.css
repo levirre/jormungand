@@ -79,7 +79,7 @@ body{
     border-radius: 0.25em;
     padding: .5em .5em;
     font-family: Consolas, monaco, monospace;
-    margin: 1em;
+    margin: .5em;
     font-size: 1em;
     cursor: pointer;
     
@@ -107,6 +107,7 @@ body{
   left: 11vw;
   margin: 0;
   padding:0 ;
+  z-index: -99;
 }
 
 .faceDown{
