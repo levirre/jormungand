@@ -70,8 +70,13 @@ initHand(){
 }
 
 drawCard(){
-  this.hand.push(this.deck.pop());
-  return this.hand
+  var lastcard = this.hand.push(this.deck.pop());
+  return this.lastCard()
+   
+}
+
+lastCard(){
+  return this.hand.slice(-1)[0]
 }
 }
 
@@ -97,10 +102,58 @@ var hand = [];
 p1 = new Player("henona",createDeck());
 p1.shuffle(p1.deck)
 console.log(p1.deck.length)
-p1.initHand()
+//p1.initHand()
 console.log(p1.deck.length)
 
 
 console.log(p1.deck.length)
 console.log(p1.hand)
 //console.log(p1.damage)
+
+var test = function(){
+  console.log("test")
+}
+
+
+
+//make a function that create a card's html 
+//1st make a function that create's a card a displays its values in text
+//arguments color,suit,value
+
+//
+
+var displayCard = function(single){
+  var card = document.createElement('div')
+  $(card).addClass('card')
+        .html('<p>' +single.value + single.suit +'</p>')
+        .css({color: single.color})
+        .appendTo($('.hand'))
+        
+};
+
+// refresh hand
+
+var initDisplay = function(hand){
+  for(let i=0; i < hand.length;i++){
+    displayCard(hand[i])
+  }
+}
+
+
+//function will ask for (how many cards to draw){ call drawcard() that many times}
+var carddraw = function(player,numToDraw){
+  for(let i=0;i<numToDraw;i++){
+    displayCard(player.drawCard())
+  }
+  return player.hand
+};
+
+
+
+
+
+$(function(){
+$('.deck').click(function(){carddraw(p1,1)});
+});
+
+//test
