@@ -1,5 +1,5 @@
 body{
-    background-color:#252631;
+    background-color:#4D4C7A;
 }
 
 .main{
@@ -15,11 +15,7 @@ body{
     justify-content: center;
 }
 
-.board{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 #glcanvas{
     width: 90vw;
     height: 80vh;
@@ -55,7 +51,23 @@ body{
 
 }
 
+.board{
+  
+  position: absolute;
+  width: 50vw;
+  height: 70vh;
+  
+  border: 5px solid #FFFFFF;
+  display: flex;
+  margin: 5%;
+  background: rgba(255, 255, 255, 0.38);
+}
 
+.screen{
+  display: flex;
+  justify-content: center;
+  
+}
 
 .card {
     width: 5em;
@@ -70,6 +82,7 @@ body{
     margin: 1em;
     font-size: 1em;
     cursor: pointer;
+    
   }
   
 .deck{
@@ -80,6 +93,20 @@ body{
     cursor: pointer;
     margin: 0;
     padding: 0;
+    bottom: 15vh;
+    right: 10vw;
+    position: fixed;
+}
+
+.damagezone{
+  position:fixed;
+  height: 20em;
+  width: 7em;
+  border: 5px solid #FFFFFF;
+  bottom:10vh;
+  left: 11vw;
+  margin: 0;
+  padding:0 ;
 }
 
 .faceDown{
@@ -129,11 +156,11 @@ body{
   }
   .hand{
     display: flex;
-    margin: 1em;
-    align-items: center;
-    justify-content: center;
-    width: 90vw;
+    margin: 0;
     flex-wrap: wrap;
+    position: fixed;
+    bottom: 5vh;
+    left: 30vw;
   }
   
   .rank{

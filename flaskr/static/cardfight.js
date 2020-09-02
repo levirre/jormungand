@@ -159,10 +159,6 @@ var carddraw = function(player,numToDraw){
   return player.hand
 };
 
-
-
-
-
 $(function(){
   $('.deck').click(function(){carddraw(p1,1)});
   $(document).on("click",".card",function(){console.log("clicked")});
