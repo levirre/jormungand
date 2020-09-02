@@ -26,6 +26,7 @@ function guard(cardVanguard,guards){
 }
 
 //console.log(guard(card1.value,guarding))
+var card;
 const INITHANDSIZE = 5;
 class Player{
 
@@ -88,7 +89,7 @@ var value = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 for(i = 0; i <= suits.length-1;i++ ){
   for(j=0; j <=value.length-1;j++){
     let color = i % 2 ? 'red' : 'black';
-    card = new Card(color,suits[i],value[j]);
+    let card = new Card(color,suits[i],value[j]);
     deck.push(card);
   }
 }
@@ -123,28 +124,37 @@ var test = function(){
 //
 
 var displayCard = function(single){
-  var card = document.createElement('div')
+  card = document.createElement('div')
   $(card).addClass('card')
         .html('<p>' +single.value + single.suit +'</p>')
-        .css({color: single.color})
-        .appendTo($('.hand'))
-        
+        .css({color: single.color});
+  
+  return card
+  
+     
 };
 
 // refresh hand
 
-var initDisplay = function(hand){
-  for(let i=0; i < hand.length;i++){
-    displayCard(hand[i])
+var showHand = function(player,hand){
+  if($('.card')){
+    $('.hand').html('')
   }
+  
+  for(let i=0; i < hand.length;i++){
+    card = displayCard(hand[i])
+    $('.hand').append(card)
+  }
+  return player.hand
 }
 
 
-//function will ask for (how many cards to draw){ call drawcard() that many times}
+//function will ask for (how many cards to draw){ call drawcard() that many times and display}
 var carddraw = function(player,numToDraw){
   for(let i=0;i<numToDraw;i++){
     displayCard(player.drawCard())
   }
+  showHand(player,player.hand)
   return player.hand
 };
 
@@ -154,6 +164,7 @@ var carddraw = function(player,numToDraw){
 
 $(function(){
 $('.deck').click(function(){carddraw(p1,1)});
+$(document).on("click",".card",function(){console.log("clicked")});
 });
 
 //test
