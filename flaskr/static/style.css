@@ -53,14 +53,18 @@ body{
 
 .board{
   
-  position: absolute;
+  position: relative;
   width: 50vw;
   height: 70vh;
-  
+  min-width: 500px;
+  min-height: 700px;
   border: 5px solid #FFFFFF;
   display: flex;
   margin: 5%;
   background: rgba(255, 255, 255, 0.38);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .screen{
@@ -95,11 +99,24 @@ body{
     padding: 0;
     bottom: 15vh;
     right: 10vw;
-    position: fixed;
+    position: absolute;
+}
+
+.player.zone{
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  top: 5vh
+  
+  
+ 
+  
+  
 }
 
 .damagezone{
-  position:fixed;
+  position:absolute;
   height: 20em;
   width: 7em;
   border: 5px solid #FFFFFF;
@@ -108,6 +125,49 @@ body{
   margin: 0;
   padding:0 ;
   z-index: -99;
+}
+
+.guardzone{
+  position: absolute;
+  border: 5px solid #FFFFFF;
+  box-sizing: border-box;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  
+}
+
+.frontguard{
+  position: absolute;
+  flex-direction: row;
+  display: flex;
+}
+.rearguard{
+  position: absolute;
+  flex-direction: row;
+  display: flex;
+}
+
+.frontguard > .player{
+  border: 5px solid #FFFFFF;
+  box-sizing: border-box;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-left: 3em;
+  margin-right: 3em;
+  margin-top: 2em;
+}
+
+.rearguard > .player{
+  border: 5px solid #FFFFFF;
+  box-sizing: border-box;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-left: 3em;
+  margin-right: 3em;
+  margin-top: 10em;
 }
 
 .faceDown{
